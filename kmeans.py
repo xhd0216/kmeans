@@ -7,7 +7,7 @@ def worker(data, KGroups, rg, assignment, dist_method, cols):
     while i <= rg[1]:
         m = -1.0
         g = -1
-        print 'working on row ', i
+        ##print 'working on row ', i
         for h in range(len(KGroups)):
             di = distance(dist_method, data[i], KGroups[h], cols)
             if m < 0 or di < m:
@@ -33,8 +33,14 @@ def distance(dm, a, b, cols):
         for i in cols:
             s += abs(a[i] - b[i])
         return s
+    if dm == 'euclidean':
+        s = 0.0
+        for i in cols:
+            s += (a[i] - b[i]) * (a[i] - b[i])
+        return math.sqrt(s)
     else:
-        return 1000
+        print 'unknown distance method'
+        return -1
 def initialK(data, k, nrows):
      t = random.sample(range(nrows), k)
      return [data[i] for i in t]
