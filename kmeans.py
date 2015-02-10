@@ -29,15 +29,9 @@ def divideData(nr, nt):
     return result
 def distance(dm, a, b, cols):
     if dm == 'manhattan':
-        s = 0.0
-        for i in cols:
-            s += abs(a[i] - b[i])
-        return s
+        return sum([abs(a[i] - b[i]) for i in range(len(a))])
     if dm == 'euclidean':
-        s = 0.0
-        for i in cols:
-            s += (a[i] - b[i]) * (a[i] - b[i])
-        return math.sqrt(s)
+        return math.sqrt(sum([(a[i] - b[i]) * (a[i] - b[i]) for i in range(len(a))]))
     else:
         print 'unknown distance method'
         return -1
@@ -55,7 +49,7 @@ def updateCenters(assignments, data, KGroups, k):
             KGroups[i] = [0 for j in range(len(data[0]))]
         else:
             KGroups[i] = [sum([t[j] for t in temp])/float(n) for j in range(len(temp[0]))]
-def kmeans(data, k, dist = 'manhattan', hasLabel = False, n_threads = 4, maxRounds = 100):
+def kmeans(data, k, dist = 'euclidean', hasLabel = False, n_threads = 4, maxRounds = 100):
     nrows = len(data)
     ncols = len(data[0])
     rows = range(nrows)
