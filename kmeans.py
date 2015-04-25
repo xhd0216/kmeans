@@ -17,7 +17,11 @@ def worker(data, KGroups, rg, assignment, dist_method, cols):
         ##print 'row ', i, data[i], 'goes to group', g, m
         i+=1
     assignment[rg[0]:rg[1]+1] = result
+
+    
 def divideData(nr, nt):
+    ###divide data into nt groups for multithreading
+    ###returns ([0, 10], [11, 20], ...) etc
     result = []
     start = 0
     for i in range(nt):
