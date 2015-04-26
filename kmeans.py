@@ -64,7 +64,7 @@ def kmeans(data, k, dist = 'euclidean', hasLabel = False, n_threads = 4, maxRoun
         ncols -= 1
     ## get initial k groups
     KGroups = initialK(data, k, nrows)
-    nRounds = 0
+    nRounds = 0   
     assignments = [0 for i in range(nrows)]
     checked = set()
     d = divideData(nrows, n_threads)
