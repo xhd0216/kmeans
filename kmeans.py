@@ -3,7 +3,7 @@ import threading
 from threading import Thread
 def worker(data, KGroups, rg, assignment, dist_method, cols):
     i = rg[0]
-    result = []
+    result = []    
     while i <= rg[1]:
         m = -1.0
         g = -1
